@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <!-- Load React API -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <!-- Load React DOM-->
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- load babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector(".root");
+
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      // React.useState 메소드를 사용하면 [default value, modifier function] 으로 이루어진 arrray를 받아올 수 있다.
+
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+      // modifier function 이름을 직관적으로 수정하고, 디폴트값을 어떻게 바꿔서 리렌더링 하면 되는지 넣어준다.
+
+      return (
+        <div>
+          <h3>Total clicks : {counter}</h3>
+          <button onClick={onClick}>Click here</button>
+        </div>
+      );
+      // 렌더링 할 태그는 div 안에 들어있어야한다.
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
