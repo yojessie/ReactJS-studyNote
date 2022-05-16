@@ -23,7 +23,12 @@
       // React.useState 메소드를 사용하면 [default value, modifier function] 으로 이루어진 arrray를 받아올 수 있다.
 
       const onClick = () => {
-        setCounter(counter + 1);
+        // modifier 함수를 사용하는 두가지 방법이 있다.
+
+        // setCounter(counter + 1);
+        // 직접할당 : 현재 값이랑 관련없는 새로운 값을 가져올때 사용.
+        setCounter((current) => current + 1);
+        // 함수할당 : 현재 값을 기반으로 새로운 값을 만들고 싶을때 사용.
       };
       // modifier function 이름을 직관적으로 수정하고, 디폴트값을 어떻게 바꿔서 리렌더링 하면 되는지 넣어준다.
 
