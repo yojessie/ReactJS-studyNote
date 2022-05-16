@@ -22,34 +22,42 @@
       const [minutes, setMinutes] = React.useState();
       const onChange = (event) => {
         setMinutes(event.target.value);
+        // 2. 이벤트가 일어난 타겟(인풋)의 값을 modifire 함수를 통해 업데이트 & 갱신 시켜주고
+      };
+      const reset = () => {
+        setMinutes(0);
       };
 
       return (
-        // <div>
-        //   <h1>Super Converter</h1>
-        //   <label for="minutes">Minutes</label>
-        //   <input id="minutes" placeholder="Munutes" type="number" />
-        //   <label for="hours">Hours</label>
-        //   <input id="hours" placeholder="Hours" type="number" />
-        // </div>
-        // 이렇게 html 코드를 그대로 사용할 수 없는 속성들도 있다. class, for 등은 JS 용어이기 때문.
-
-        // class = className, for = htmlFor 로 바꿔준다.
         <div>
           <h1 className="title">Super Converter</h1>
-          <label htmlFor="minutes">Minutes</label>
-          <input
-            value={minutes}
-            id="minutes"
-            placeholder="Munutes"
-            type="number"
-            onChange={onChange}
-          />
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={minutes}
+              // 3. onChange 함수를 통해 바뀐 minutes 값을 표시해준다
+              id="minutes"
+              placeholder="Munutes"
+              type="number"
+              onChange={onChange}
+              // 1. 변화를 감지해서 onChange 함수를 실행시키고
+            />
+          </div>
 
-          <h4>You want to convert {minutes}</h4>
-
-          <label htmlFor="hours">Hours</label>
-          <input id="hours" placeholder="Hours" type="number" />
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={Math.round(minutes / 60)}
+              // 4. 위에서 바뀐 minutes 값에 60을 나눠서 시간으로 표기한다.
+              // Math.round는 반올림 메소드
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              // 5. 여기는 onchange 이벤트가 없으므로 input 수정이 안된다.
+              disabled // 6. 입력할 수 없는 인풋임을 보여주는 속성 추가
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
         </div>
       );
     }
