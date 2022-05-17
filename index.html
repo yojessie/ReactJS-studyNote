@@ -15,7 +15,7 @@
   <script type="text/babel">
     const root = document.querySelector(".root");
 
-    function App() {
+    function MinToHour() {
       const [amount, setAmount] = React.useState();
       const [inverted, setInverted] = React.useState(false);
 
@@ -30,7 +30,6 @@
 
       return (
         <div>
-          <h1 className="title">Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
@@ -59,6 +58,78 @@
             {inverted ? "Turn back" : "Invert"}
           </button>
         </div>
+      );
+    }
+
+    function KilometerToMile() {
+      const [amount, setAmount] = React.useState();
+      const [inverted, setInverted] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+
+      const reset = () => {
+        setAmount(0);
+      };
+
+      const onInvert = () => {
+        reset();
+        setInverted((current) => !current);
+      };
+
+      return (
+        <div>
+          <div>
+            <label htmlFor="kilometer">Kilometer</label>
+            <input
+              value={inverted ? Math.round(amount * 1.609) : amount}
+              id="kilometer"
+              placeholder="kilometer"
+              type="number"
+              disabled={inverted}
+              onChange={onChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="mile">Mile</label>
+            <input
+              value={inverted ? amount : Math.round(amount / 1.609)}
+              id="mile"
+              placeholder="mile"
+              type="number"
+              disabled={!inverted}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn back" : "Invert"}
+          </button>
+        </div>
+      );
+    }
+
+    function App() {
+      const [index, setIndex] = React.useState(0);
+
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      };
+
+      return (
+        <div>
+          <h1 className="title">Super Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="0">Select the units to convert</option>
+            <option value="1">Minute & Hour</option>
+            <option value="2">Kilometer & Mile</option>
+          </select>
+          <hr />
+          {index == 0 ? null : index == 1 ? <MinToHour /> : <KilometerToMile />}
+        </div>
+        // JSX 안에서 {} 를 쓰면 내부에 JS 코드를 사용할 수 있다.
       );
     }
 
