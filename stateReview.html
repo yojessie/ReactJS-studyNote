@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector(".root");
+
+    function TimeConverter() {
+      const [amount, setAmount] = React.useState();
+      const [boolean, setBoolean] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+
+      const reset = () => {
+        setAmount(0);
+      };
+
+      const onInvert = () => {
+        reset();
+        setBoolean(!boolean);
+      };
+
+      return (
+        <div>
+          <div>
+            <label forHTML="minute">MINUTE</label>
+            <input
+              value={boolean ? amount * 60 : amount}
+              id="minute"
+              type="number"
+              placeholder="minute"
+              onChange={onChange}
+              disabled={boolean}
+            />
+          </div>
+          <div>
+            <label forHTML="hour">HOUR</label>
+            <input
+              value={!boolean ? Math.round(amount / 60) : amount}
+              id="hour"
+              type="number"
+              placeholder="hour"
+              onChange={onChange}
+              disabled={!boolean}
+            />
+          </div>
+          <button type="button" onClick={reset}>
+            RESET ALL
+          </button>
+          <button type="button" onClick={onInvert}>
+            INVERT
+          </button>
+        </div>
+      );
+    }
+
+    function DistanceConverter() {
+      const [amount, setAmount] = React.useState();
+      const [boolean, setBoolean] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+
+      const reset = () => {
+        setAmount(0);
+      };
+
+      const onInvert = () => {
+        reset();
+        setBoolean(!boolean);
+      };
+
+      return (
+        <div>
+          <div>
+            <label forHTML="kilometer">KILOMETER</label>
+            <input
+              id="kilometer"
+              value={boolean ? Math.round(amount * 1.609) : amount}
+              type="number"
+              placeholder="kilometer"
+              onChange={onChange}
+              disabled={boolean}
+            />
+          </div>
+          <div>
+            <label forHTML="mile">MILE</label>
+            <input
+              id="mile"
+              value={!boolean ? Math.round(amount / 1.609) : amount}
+              type="number"
+              placeholder="mile"
+              onChange={onChange}
+              disabled={!boolean}
+            />
+          </div>
+          <button type="button" onClick={reset}>
+            RESET ALL
+          </button>
+          <button type="button" onClick={onInvert}>
+            INVERT
+          </button>
+        </div>
+      );
+    }
+
+    function App() {
+      const [index, setIndex] = React.useState(0);
+
+      const onIndex = (event) => {
+        setIndex(event.target.value);
+      };
+
+      return (
+        <div>
+          <h1>SUPER CONVERTER</h1>
+          <select value={index} onChange={onIndex}>
+            <option value="0">Select a unit to convert</option>
+            <option value="1">Minute to Hour</option>
+            <option value="2">Kilometer to Mile</option>
+          </select>
+
+          <hr />
+
+          {index == 0 ? null : index == 1 ? (
+            <TimeConverter />
+          ) : (
+            <DistanceConverter />
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
