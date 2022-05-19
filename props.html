@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector(".root");
+
+    function Button({ text, big, onChange }) {
+      // props 인자는 하나만 존재
+      // Button 컴포넌트에 있는 모든 속성들을 오브젝트에 담아 보내준다.
+      // (props)라고만 적으면 오브젝트를 불러온다. {}안에 속성명을 직접 적을수도 있음.
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            marginRight: "10px",
+            fontSize: big ? 24 : 14,
+          }}
+          onClick={onChange}
+        >
+          {text}
+        </button>
+      );
+    }
+
+    function App() {
+      const [value, setValue] = React.useState("Changes");
+
+      const changeValue = () => {
+        setValue("Revert Changes");
+      };
+
+      return (
+        <div>
+          <Button text={value} big={true} onChange={changeValue} />
+          <Button text="CONTINUE" big={false} />
+        </div>
+        // 💡
+        // 컴포넌트 태그에 넣어주는 속성은 이름을 맘대로 정할 수 있는 속성의 종류일 뿐이다.
+        // 컴포넌트 함수 내부 태그에 넣는 onChange는 이벤트리스너 이지만, 함수를 사용할때 넣는 onChange는 속성의 이름일 뿐.
+        // 💡
+        // 버튼이 클릭되어 changeValue 함수가 실행되면, state가 변경되고 자동으로 return 안에 있는 것들이 리렌더 된다.
+        // 그런데 리렌더가 필요없는 요소까지 다시 만들어지는 문제가 있다.
+        // 따라서 React.memo()를 변수로 설정해 리렌터가 필요없는 요소를 체크해줄 수 있다.
+        // 💡
+        // const MemorizedButton = React.memo(Button);
+        // 위 변수를 선언하고 출력할 컴포넌트 이름을 MemorizedButton로 바꾸면 됨.
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
