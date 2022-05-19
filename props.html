@@ -7,9 +7,11 @@
     <div class="root"></div>
   </body>
 
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- import prop-types -->
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 
   <script type="text/babel">
     const root = document.querySelector(".root");
@@ -36,6 +38,13 @@
       );
     }
 
+    Button.propTypes = {
+      text: PropTypes.string.isRequired,
+      big: PropTypes.bool,
+    };
+    // Button 컴포넌트가 가지고있는 prop에 어떤 자료 형태여야하는지 정의해주면 문제 시 에러로 알려준다.
+    // 컴포넌트가 꼭 가지고 있어야하는 속성에는 끝에 isRequired 추가해주기.
+
     function App() {
       const [value, setValue] = React.useState("Changes");
 
@@ -46,7 +55,7 @@
       return (
         <div>
           <Button text={value} big={true} onChange={changeValue} />
-          <Button text="CONTINUE" big={false} />
+          <Button text={"HELLO"} big={false} />
         </div>
         // 💡
         // 컴포넌트 태그에 넣어주는 속성은 이름을 맘대로 정할 수 있는 속성의 종류일 뿐이다.
