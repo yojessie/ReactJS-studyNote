@@ -16,10 +16,11 @@
   <script type="text/babel">
     const root = document.querySelector(".root");
 
-    function Button({ text, big, onChange }) {
+    function Button({ text, big, onChange, opacity = 1 }) {
       // props 인자는 하나만 존재
       // Button 컴포넌트에 있는 모든 속성들을 오브젝트에 담아 보내준다.
       // (props)라고만 적으면 오브젝트를 불러온다. {}안에 속성명을 직접 적을수도 있음.
+      // 각 인자에 디폴트값 지정 가능
       return (
         <button
           style={{
@@ -30,6 +31,7 @@
             borderRadius: 10,
             marginRight: "10px",
             fontSize: big ? 24 : 14,
+            opacity, // opacity: opacity 와 동일한 코드
           }}
           onClick={onChange}
         >
@@ -41,6 +43,7 @@
     Button.propTypes = {
       text: PropTypes.string.isRequired,
       big: PropTypes.bool,
+      opacity: PropTypes.number,
     };
     // Button 컴포넌트가 가지고있는 prop에 어떤 자료 형태여야하는지 정의해주면 문제 시 에러로 알려준다.
     // 컴포넌트가 꼭 가지고 있어야하는 속성에는 끝에 isRequired 추가해주기.
@@ -55,7 +58,7 @@
       return (
         <div>
           <Button text={value} big={true} onChange={changeValue} />
-          <Button text={"HELLO"} big={false} />
+          <Button text={"HELLO"} big={false} opacity={0.5} />
         </div>
         // 💡
         // 컴포넌트 태그에 넣어주는 속성은 이름을 맘대로 정할 수 있는 속성의 종류일 뿐이다.
