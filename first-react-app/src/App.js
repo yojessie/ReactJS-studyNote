@@ -8,13 +8,12 @@ function App() {
   const onChange = (event) => setTodo(event.target.value);
   const onSubmit = (event) => {
     event.preventDefault();
-    if (todo == "") {
+    if (todo === "") {
       return;
     }
     setTodoList((currentArr) => [todo, ...currentArr]);
     setTodo("");
   };
-  console.log(todoList);
 
   return (
     <div onSubmit={onSubmit}>
@@ -28,6 +27,12 @@ function App() {
         />
         <button>save the list</button>
       </form>
+      <hr />
+      <ul>
+        {todoList.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
