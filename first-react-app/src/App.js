@@ -21,8 +21,9 @@ function App() {
   const [showResult, setShowResult] = useState(false);
   const onClick = () => setShowResult((boolean) => !boolean);
 
-  const [selectedCoin, setSelectedCoin] = useState("");
-  const handleselected = (event) => setSelectedCoin(event.target.value);
+  const [coinPrice, setCoinPrice] = useState(0);
+  const handleSelected = (event) => setCoinPrice(event.target.value);
+  // 💡 event.target에서 가져올 값을 value 속성으로 저장해서 땡겨옴
 
   return (
     <div>
@@ -43,9 +44,10 @@ function App() {
           </div>
           <div className="coin">
             <strong>Select the coin</strong>
-            <select onChange={handleselected}>
+            <select onChange={handleSelected}>
+              <option>Select the coin</option>
               {coins.map((coin) => (
-                <option>
+                <option key={coin.id} value={Math.round(coin.quotes.USD.price)}>
                   {coin.name}({coin.symbol}) : ${" "}
                   {Math.round(coin.quotes.USD.price)}
                 </option>
@@ -53,16 +55,12 @@ function App() {
             </select>
           </div>
           <button type="button" onClick={onClick}>
-            {showResult ? "Reset" : "Calculate"}
+            CALCULATE
           </button>
-          {showResult ? <h3>You can buy '{selectedCoin}'</h3> : null}
+          {showResult ? <h3>You can buy {budget / coinPrice}</h3> : null}
         </div>
       )}
     </div>
-    // 💡 선택된 옵션을 잡아왔으나, 그냥 스트링으로 넘어옴
-    // 💡 잡아둔 input value 값으로 결과값 계산 로직 필요
-    // 💡 select 디폴트값 바꿀 수 있는지 확인
-
     // map 함수를 사용했을때 받아온 인자는, arr의 각 item을 의미한다.
     // 받아온 데이터에 id값이 있기 때문에, key로 사용할 index를 받아오지 않아도 됨.
   );
