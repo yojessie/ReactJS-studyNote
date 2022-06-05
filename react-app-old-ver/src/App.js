@@ -1,30 +1,34 @@
 import React from "react";
-import Fruit from "./Fruit";
 
-const fruits = [
-  { id: 1, name: "Melon", have: 3, season: "summer" },
-  { id: 2, name: "strawberry", have: 5, season: "spring" },
-  { id: 3, name: "peach", have: 2, season: "summer" },
-  { id: 4, name: "apple", have: 6, season: "autum" },
-  { id: 5, name: "tangerine", have: 1, season: "winter" },
-];
+// old ver 코드는 class 컴포넌트로 구성되어있다.
+// 심플한 function component 대신 class component를 활용했던 이유는 state를 활용하기 위해서였다.
+// class component를 쓸때는 render 메소드 안에서 return 시켜줘야한다.
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
 
-function App() {
-  return (
-    <div>
-      <h1>My favorite fruits</h1>
-      {fruits.map((fruit) => {
-        return (
-          <Fruit
-            key={fruit.id}
-            name={fruit.name}
-            season={fruit.season}
-            have={fruit.have}
-          />
-        );
-      })}
-    </div>
-  );
+  add = () => {
+    this.setState((current) => ({
+      count: current.count + 1,
+    }));
+  };
+
+  minus = () => {
+    this.setState((current) => ({
+      count: current.count - 1,
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
 }
 
 export default App;
