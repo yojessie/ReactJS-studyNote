@@ -10,6 +10,8 @@ body {
 }
 
 .movie img {
+  width: 230px;
+  height: 345px;
   margin-right: 40px;
   border-radius: 8px;
 }
