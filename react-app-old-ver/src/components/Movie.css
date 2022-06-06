@@ -29,3 +29,20 @@ body {
   border-radius: 4px;
   font-weight: 400;
 }
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title-text {
+  margin-right: 8px;
+}
+
+.more-button {
+  text-decoration: none;
+  color: #2f2f2f;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+}

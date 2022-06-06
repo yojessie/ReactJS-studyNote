@@ -1,0 +1,17 @@
+.navigation {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 40px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.button {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 16px;
+  color: white;
+}
