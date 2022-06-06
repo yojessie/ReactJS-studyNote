@@ -46,6 +46,7 @@ class App extends React.Component {
                   year={movie.year}
                   poster={movie.medium_cover_image}
                   summary={movie.summary}
+                  genres={movie.genres}
                 />
               );
             })}

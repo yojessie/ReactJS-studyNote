@@ -11,4 +11,19 @@ body {
 
 .movie img {
   margin-right: 40px;
+  border-radius: 8px;
+}
+
+.genres {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.genre {
+  margin-right: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 400;
 }
