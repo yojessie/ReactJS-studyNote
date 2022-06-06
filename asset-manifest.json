@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-app-old-ver/static/css/main.80cc2623.css",
-    "main.js": "/react-app-old-ver/static/js/main.0065f54f.js",
-    "index.html": "/react-app-old-ver/index.html",
-    "main.80cc2623.css.map": "/react-app-old-ver/static/css/main.80cc2623.css.map",
-    "main.0065f54f.js.map": "/react-app-old-ver/static/js/main.0065f54f.js.map"
+    "main.css": "/reactjs-studynote/react-app-old-ver/static/css/main.80cc2623.css",
+    "main.js": "/reactjs-studynote/react-app-old-ver/static/js/main.0065f54f.js",
+    "index.html": "/reactjs-studynote/react-app-old-ver/index.html",
+    "main.80cc2623.css.map": "/reactjs-studynote/react-app-old-ver/static/css/main.80cc2623.css.map",
+    "main.0065f54f.js.map": "/reactjs-studynote/react-app-old-ver/static/js/main.0065f54f.js.map"
   },
   "entrypoints": [
     "static/css/main.80cc2623.css",
