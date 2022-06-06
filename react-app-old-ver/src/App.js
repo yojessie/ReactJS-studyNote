@@ -31,16 +31,19 @@ class App extends React.Component {
     // 아니면 this.state.isLoading 이런식으로 가져올 수 있다.
 
     return (
-      <div>
+      <section className="container">
         {isLoading ? (
-          "Loading..."
+          <div className="loader">
+            <h1>Loading...</h1>
+          </div>
         ) : (
-          <div>
+          <div className="movies">
             {movieList.map((movie) => {
               return (
                 <Movie
                   key={movie.id}
                   title={movie.title}
+                  year={movie.year}
                   poster={movie.medium_cover_image}
                   summary={movie.summary}
                 />
@@ -48,7 +51,7 @@ class App extends React.Component {
             })}
           </div>
         )}
-      </div>
+      </section>
     );
   }
 }

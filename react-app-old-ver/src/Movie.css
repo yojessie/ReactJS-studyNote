@@ -1,0 +1,14 @@
+body {
+  background-color: #2f2f2f;
+  color: #fff;
+  padding: 80px;
+}
+
+.movie {
+  display: flex;
+  margin-bottom: 80px;
+}
+
+.movie img {
+  margin-right: 40px;
+}
