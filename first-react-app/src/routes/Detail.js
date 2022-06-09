@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-// useParams 라는 함수를 통해 해당 컴포넌트를 불러올때 사용된 라우터에 있는 변수(:id) 를 가져올 수 있다.
-import Movie from "../components/Movie";
+import Loading from "../components/Loading";
+import "./Detail.css";
 
 function Detail() {
-  const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [movie, setMovie] = useState([]);
 
   const { id } = useParams();
 
@@ -25,18 +25,26 @@ function Detail() {
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
-        <div>
-          <Link to={`/`}>Go back</Link>
-          <h1>{movie.title}</h1>
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            coverImg={movie.medium_cover_image}
-            genres={movie.genres}
-            description={movie.description_full}
-          />
+        <div className="section">
+          <Link to="/" className="home-button">
+            Go back
+          </Link>
+          <div className="detail">
+            <img
+              className="image-large"
+              src={movie.large_cover_image}
+              alt={movie.title}
+            />
+            <h1 className="title">{movie.title}</h1>
+            <ul className="genres">
+              {movie.genres.map((genre) => (
+                <li key={genre}>{genre}</li>
+              ))}
+            </ul>
+            <p className="description">{movie.description_full}</p>
+          </div>
         </div>
       )}
     </div>
